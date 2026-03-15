@@ -1,58 +1,113 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Meu Blog de Viagens</title>
-  </head>
-  <body>
-    <header>
-      <h1>Meu Blog de Viagens</h1>
-      <nav aria-label="Menu principal">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li><a href="#">Contato</a></li>
-        </ul>
-      </nav>
-    </header>
+<!DOCTYPE html>
 
-    <main>
-      <article>
-        <h2>Descobrindo as Praias do Nordeste</h2>
-        <time datetime="2026-03-03">03 de março de 2026</time>
+<html lang="pt-br">
 
-        <p>
-          As praias do Nordeste brasileiro são conhecidas por suas águas cristalinas,
-          coqueirais e cenários espetaculares. Em viagens recentes, explorei trechos
-          menos turísticos que mantêm a paisagem natural e a cultura local vivas.
-        </p>
+<head>
 
-        <p>
-          Além do banho de mar, a gastronomia e as trilhas próximas às praias oferecem
-          experiências inesquecíveis. Recomenda-se sempre respeitar áreas de preservação
-          e comunidades locais ao planejar passeios.
-        </p>
+    <meta charset="UTF-8">
 
-        <figure>
-          <img src="images.jpg" alt="Vista aérea de uma praia do Nordeste" />
-          <figcaption>Praia paradisíaca no Nordeste — imagem ilustrativa.</figcaption>
-        </figure>
-      </article>
+    <title>Página de Cadastro</title>
 
-      <aside>
-        <h3>Posts Relacionados</h3>
-        <ul>
-          <li><a href="#">Roteiro de 3 dias em Jericoacoara</a></li>
-          <li><a href="#">Melhores praias para famílias</a></li>
-          <li><a href="#">Gastronomia nordestina: o que provar</a></li>
-        </ul>
-      </aside>
-    </main>
+</head>
 
-    <footer>
-      <p>&copy; 2024 - Todos os direitos reservados.</p>
-      <p>Contato: contato@meublogdeviagens.exemplo</p>
-    </footer>
-  </body>
+<body>
+
+
+
+    <h1>Página de Cadastro</h1>
+
+
+
+    <form>
+
+        <fieldset>
+
+            <legend>Crie sua Conta</legend>
+
+
+
+            <p>
+
+                <label for="nome">Nome:</label><br>
+
+                <input type="text" id="nome" name="nome">
+
+            </p>
+
+
+
+            <p>
+
+                <label for="email">E-mail:</label><br>
+
+                <input type="email" id="email" name="email" placeholder="seuemail@dominio.com" required>
+
+            </p>
+
+
+
+            <p>
+
+                <label for="senha">Senha (mínimo 8 caracteres):</label><br>
+
+                <input type="password" id="senha" name="senha" minlength="8" required>
+
+            </p>
+
+
+
+            <p><strong>Gênero:</strong></p>
+
+            <input type="radio" id="feminino" name="genero" value="feminino">
+
+            <label for="feminino">Feminino</label><br>
+
+           
+
+            <input type="radio" id="masculino" name="genero" value="masculino">
+
+            <label for="masculino">Masculino</label><br>
+
+           
+
+            <input type="radio" id="outro" name="genero" value="outro">
+
+            <label for="outro">Outro</label>
+
+
+
+            <p>
+
+                <label for="biografia">Biografia:</label><br>
+
+                <textarea id="biografia" name="biografia" rows="5" placeholder="Fale um pouco sobre você..."></textarea>
+
+            </p>
+
+
+
+            <p>
+
+                <input type="checkbox" id="termos" name="termos" required>
+
+                <label for="termos">Eu li e aceito os termos de serviço.</label>
+
+            </p>
+
+
+
+            <button type="submit">Cadastrar</button>
+
+            <button type="reset">Limpar</button>
+
+
+
+        </fieldset>
+
+    </form>
+
+
+
+</body>
+
 </html>

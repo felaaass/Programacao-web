@@ -50,7 +50,7 @@ export default function Home() {
 
             if (response.ok) {
                 alert('E-mail enviado com sucesso!');
-                e.currentTarget.reset();
+                (e.target as HTMLFormElement).reset();
             } else {
                 alert('Erro ao enviar o e-mail.');
             }

@@ -5,7 +5,8 @@ import Menu from '../assets/menu.svg'
 import Close from '../assets/close.svg'
 import RectangleOne from '../assets/RectangleOne.png'
 import RectangleTwo from '../assets/RectangleTwo.png'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
 import '../styles/header.css'
 import '../styles/hero.css'
 import Data from '../assets/data.svg'
@@ -17,7 +18,6 @@ import ProfileImageOne from '../assets/ProfileImageOne.png'
 import '../styles/testimonials.css'
 import '../styles/pricing.css'
 import Check from '../assets/check.svg'
-
 import FacebookIcon from '../assets/facebook 1.svg'
 import InstagramIcon from '../assets/instagram 1.svg'
 import YoutubeIcon from '../assets/youtube 1.svg'
@@ -26,6 +26,8 @@ import '../styles/footer.css'
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [isChallengeCompleted, setChallengeCompleted] = useState(false);
+    const recaptchaRef = useRef<ReCAPTCHA>(null);
 
     useEffect(() => {
         const html = document.querySelector("html");
@@ -34,9 +36,24 @@ export default function Home() {
         }
     }, [showMobileMenu]);
 
+    function handleCompleteChallenge(token: string | null) {
+        if (!token) {
+            setChallengeCompleted(false);
+            return;
+        }
+        setChallengeCompleted(true);
+    }
+
     const handleSendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
+
+        if (!isChallengeCompleted) {
+            alert("Por favor, confirme que você não é um robô.");
+            return;
+        }
+
+        const form = e.currentTarget;
+        const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
         try {
@@ -50,7 +67,9 @@ export default function Home() {
 
             if (response.ok) {
                 alert('E-mail enviado com sucesso!');
-                (e.target as HTMLFormElement).reset();
+                form.reset();
+                setChallengeCompleted(false);
+                recaptchaRef.current?.reset();
             } else {
                 alert('Erro ao enviar o e-mail.');
             }
@@ -254,6 +273,13 @@ export default function Home() {
                             required 
                             rows={3} 
                         />
+                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+                            <ReCAPTCHA 
+                                ref={recaptchaRef} 
+                                sitekey="6LcrHzAtAAAAAGShJsgtPDFGP0L5YXWkcJUn-nJg" 
+                                onChange={handleCompleteChallenge} 
+                            />
+                        </div>
                         <button type="submit">Enviar</button>
                     </form>
                 </div>
